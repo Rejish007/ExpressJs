@@ -1,11 +1,23 @@
 import express, { response } from 'express';
-import productRoutes from './routes/productRoutes.js'
-import userRoutes from './routes/userRoutes.js'
+import productRoutes from './routes/productRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+import mongoose from 'mongoose';
 
 
 
 const port = 5000;
 const app = express();
+
+mongoose.connect('mongodb+srv://stharejish07:xWPki2hMVGLsme3G@cluster0.bnleh.mongodb.net/ShopUs').then((val) => {
+  console.log(val);
+
+  app.listen(port, (e) => {
+    console.log('welcome');
+  });
+}).catch((err) => {
+  console.log(err);
+});
+
 
 app.use(express.json());
 
@@ -48,6 +60,6 @@ app.use('/api/users', userRoutes);
 
 
 
-app.listen(port, (e) => {
-  console.log('connect')
-})
+// app.listen(port, (e) => {
+//   console.log('connect')
+// })
